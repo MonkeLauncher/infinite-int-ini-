@@ -8,4 +8,4 @@ have fun!
 
 
 license: tymbarkware
-(if you see me you have to buy me a bottle of tymbrk :P  )
+(if you see me you have to buy me a bottle of tymbark :P  )
