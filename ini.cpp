@@ -125,7 +125,7 @@ std::string ini::eraseFrontZeros (std::string a) {
 	b = x;
 	if (a == b) return a;
 	
-	while ((int)a[0] == 0) 
+	while ((int)a[0] == 0 && a.size() > 1) 
 		a.erase(0, 1);
 		
 	return a; 
@@ -178,7 +178,7 @@ std::string ini::substraction (std::string a, std::string b) {
 	}
 	
 	for (long long i = 0; i < a.size() - 1; i++) {
-		if ((int)a[i + 1] == 0) {
+		if ((int)a[i + 1] == 0 && b[b.size() - (a.size() - i - 1)] != 0) {
 			a[i] -= 1;
 			a[i + 1] += 10;
 		}
@@ -193,8 +193,8 @@ std::string ini::substraction (std::string a, std::string b) {
 		a[a.size() - i] -= (int)b[b.size() - i];
 	}
 	
-	a = eraseFrontZeros (a);
 	a = correct (a);
+	a = eraseFrontZeros (a);
 	
 	return a;
 }
@@ -246,7 +246,10 @@ std::string ini::division (std::string a, std::string b, bool mod) {
 		
 		while (modulo.size() > b.size() || (modulo.size() == b.size() && modulo > b) || modulo == b) {
 			ile++;
+			
+			b = eraseFrontZeros (b);
 			modulo = substraction (modulo, b);
+			
 		}
 		
 		ileC = ile;
